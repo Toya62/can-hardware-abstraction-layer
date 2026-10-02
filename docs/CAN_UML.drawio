@@ -1,0 +1,126 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="COlq0a-gDAvbcwoWHUBQ">
+    <mxGraphModel dx="2116" dy="1202" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-1" parent="1" style="swimlane;startSize=30;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;b&gt;Application&lt;/b&gt;" vertex="1">
+          <mxGeometry height="120" width="340" x="60" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-2" parent="bwa0QH0OluBpgNNjbPNu-1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="- can_ : ICANInterface*&#xa;- canTypeE_ : CANTypeE*&#xa;+ runUniformLogic() : void&#xa;+ runHardwareBypassLogic() : void&#xa;+ onMessageReceived(data, length, error) : void" vertex="1">
+          <mxGeometry height="90" width="340" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-3" parent="1" style="swimlane;startSize=40;fontStyle=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;ICANInterface&lt;/b&gt;" vertex="1">
+          <mxGeometry height="260" width="380" x="660" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-4" parent="bwa0QH0OluBpgNNjbPNu-3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="&lt;i&gt;+ initialize() : bool&lt;/i&gt;&#xa;&lt;i&gt;+ setBaudrate(rate : eBaudrate) : bool&lt;/i&gt;&#xa;&lt;i&gt;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&lt;/i&gt;&#xa;&lt;i&gt;+ handleMessage() : bool&lt;/i&gt;&#xa;&lt;i&gt;+ setActive() : void&lt;/i&gt;&#xa;&lt;i&gt;+ setPassive() : void&lt;/i&gt;&#xa;&lt;i&gt;+ getLastError() : eCANError&lt;/i&gt;&#xa;&lt;i&gt;+ registerReceiveCallback(cb : MessageCallback) : void&lt;/i&gt;" vertex="1">
+          <mxGeometry height="210" width="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-5" parent="1" style="swimlane;startSize=30;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;b&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;br&gt;eBaudrate&lt;/b&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="1090" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-6" parent="bwa0QH0OluBpgNNjbPNu-5" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="BAUD_125K = 125000&#xa;BAUD_250K = 250000&#xa;BAUD_500K = 500000" vertex="1">
+          <mxGeometry height="80" width="200" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-7" parent="1" style="swimlane;startSize=30;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="&lt;b&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;br&gt;eCANError&lt;/b&gt;" vertex="1">
+          <mxGeometry height="140" width="220" x="1310" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-8" parent="bwa0QH0OluBpgNNjbPNu-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=11;" value="ERR_OK = 0&#xa;ERR_NOT_INITIALIZED&#xa;ERR_NOT_ACTIVE&#xa;ERR_INVALID_LENGTH&#xa;ERR_HARDWARE_FAULT" vertex="1">
+          <mxGeometry height="100" width="220" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-9" parent="1" style="swimlane;startSize=30;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;b&gt;&amp;lt;&amp;lt;typedef&amp;gt;&amp;gt;&lt;br&gt;MessageCallback&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="440" x="1090" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-10" parent="bwa0QH0OluBpgNNjbPNu-9" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontFamily=Courier New;" value="void(*)(data: *uint8_t, length: uint8_t, error: eCANError)" vertex="1">
+          <mxGeometry height="35" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-11" parent="1" style="swimlane;startSize=40;fontStyle=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;&amp;lt;&amp;lt;abstract&amp;gt;&amp;gt;&lt;br&gt;ACANBase&lt;/b&gt;" vertex="1">
+          <mxGeometry height="320" width="380" x="660" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-12" parent="bwa0QH0OluBpgNNjbPNu-11" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="# baudrate_ : eBaudrate&#xa;# initialized_ : bool&#xa;# active_ : bool&#xa;# lastError_ : eCANError&#xa;# receiveCallback_ : MessageCallback&#xa;# rxBuffer_ : uint8_t[8]&#xa;# rxLength_ : uint8_t&#xa;# rxError_ : eCANError&#xa;+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void&#xa;+ getLastError() : eCANError&#xa;+ registerReceiveCallback(cb : MessageCallback) : void&#xa;+ triggerHardwareInterrupt(data : *uint8_t, length : uint8_t, error : eCANError) : void" vertex="1">
+          <mxGeometry height="275" width="380" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-13" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;strokeWidth=2;html=1;" target="bwa0QH0OluBpgNNjbPNu-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-14" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-1" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=diamond;startFill=0;dashed=1;strokeWidth=1.5;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="bwa0QH0OluBpgNNjbPNu-3" value="&amp;lt;&amp;lt;use / holds pointer&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-15" parent="1" style="swimlane;startSize=30;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;CANTypeA&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="30" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-16" parent="bwa0QH0OluBpgNNjbPNu-15" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&#xa;+ handleMessage() : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void" vertex="1">
+          <mxGeometry height="180" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-17" parent="1" style="swimlane;startSize=30;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;CANTypeB&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="350" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-18" parent="bwa0QH0OluBpgNNjbPNu-17" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="- reset() : void&#xa;- setState(active : bool) : void&#xa;+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&#xa;+ handleMessage() : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void" vertex="1">
+          <mxGeometry height="180" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-19" parent="1" style="swimlane;startSize=30;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;CANTypeC&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="670" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-20" parent="bwa0QH0OluBpgNNjbPNu-19" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="# messageReceiver_ : *void&#xa;- initTypeSpecific() : bool&#xa;+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&#xa;+ handleMessage() : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void" vertex="1">
+          <mxGeometry height="180" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-21" parent="1" style="swimlane;startSize=30;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;CANTypeD&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="990" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-22" parent="bwa0QH0OluBpgNNjbPNu-21" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="- reset() : bool&#xa;- setState(active : bool) : void&#xa;+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&#xa;+ handleMessage() : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void" vertex="1">
+          <mxGeometry height="180" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-23" parent="1" style="swimlane;startSize=30;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;CANTypeE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="280" x="1310" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-24" parent="bwa0QH0OluBpgNNjbPNu-23" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;" value="+ initialize() : bool&#xa;+ setBaudrate(rate : eBaudrate) : bool&#xa;+ sendMessage(message : *uint8_t, length : uint8_t) : bool&#xa;+ sendMessageStruct(message : *messageStruct) : bool&#xa;+ handleMessage() : bool&#xa;+ setActive() : void&#xa;+ setPassive() : void" vertex="1">
+          <mxGeometry height="180" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-25" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-15" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=0;strokeWidth=1.5;html=1;exitX=0.5;exitY=0;entryX=0.1;entryY=1;" target="bwa0QH0OluBpgNNjbPNu-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-26" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-17" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=0;strokeWidth=1.5;html=1;exitX=0.5;exitY=0;entryX=0.3;entryY=1;" target="bwa0QH0OluBpgNNjbPNu-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="680" />
+              <mxPoint x="774" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-27" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-19" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=0;strokeWidth=1.5;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="bwa0QH0OluBpgNNjbPNu-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-28" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-21" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=0;strokeWidth=1.5;html=1;exitX=0.5;exitY=0;entryX=0.7;entryY=1;" target="bwa0QH0OluBpgNNjbPNu-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="680" />
+              <mxPoint x="926" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-29" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-23" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=0;strokeWidth=1.5;html=1;exitX=0.5;exitY=0;entryX=0.9;entryY=1;" target="bwa0QH0OluBpgNNjbPNu-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-30" edge="1" parent="1" source="bwa0QH0OluBpgNNjbPNu-1" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=diamond;startFill=0;dashed=1;strokeColor=#d79b00;strokeWidth=1.5;html=1;exitX=0;exitY=0.5;entryX=0.5;entryY=1;exitDx=0;exitDy=0;" target="bwa0QH0OluBpgNNjbPNu-23" value="&amp;lt;&amp;lt;bypass interface&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="110" />
+              <mxPoint x="20" y="110" />
+              <mxPoint x="20" y="960" />
+              <mxPoint x="1450" y="960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-31" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=4;fontStyle=1;" value="ACANBase = INTERMEDIATE BASE CLASS&lt;br&gt;Eliminates duplicated state code across drivers.&lt;br&gt;triggerHardwareInterrupt() simulates the hardware&lt;br&gt;ISR staging a received frame, then invokes handleMessage()." vertex="1">
+          <mxGeometry height="70" width="340" x="1090" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-32" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;spacingLeft=4;fontStyle=1;" value="Hardware Adaptation (CANTypeB / CANTypeD):&lt;br&gt;setActive()/setPassive() delegate internally to private setState(bool)." vertex="1">
+          <mxGeometry height="50" width="450" x="420" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="bwa0QH0OluBpgNNjbPNu-33" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=4;fontStyle=1;" value="sendMessageStruct() = SPECIAL FUNCTION&lt;br&gt;Bypasses ICANInterface directly to CANTypeE" vertex="1">
+          <mxGeometry height="60" width="280" x="1310" y="1000" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

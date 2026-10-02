@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.os }} (${{ matrix.cxx }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            cxx: g++-12
+            cxx_pkg: g++-12
+          - os: ubuntu-latest
+            cxx: clang++-16
+            cxx_pkg: clang-16
+          - os: macos-latest
+            cxx: clang++
+            cxx_pkg: ""
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Compiler (Ubuntu)
+        if: runner.os == 'Linux' && matrix.cxx_pkg != ''
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ${{ matrix.cxx_pkg }}
+
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_CXX_COMPILER=${{ matrix.cxx }} \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Run Tests
+        run: ctest --test-dir build --output-on-failure
